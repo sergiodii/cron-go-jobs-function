@@ -1,9 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func test() {
-	fmt.Println("Ola Mundo, from jobs_functions")
+	fmt.Println("TESTE JOBS: " + os.Getenv("DB_HOST"))
 }
 
 func main() {
