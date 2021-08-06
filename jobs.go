@@ -2,6 +2,12 @@ package jobs_functions
 
 import "fmt"
 
-func Test() {
-	fmt.Println("OLA MUNDO")
+func test() {
+	fmt.Println("Ola Mundo, from jobs_functions")
+}
+
+func Job() map[string]interface{} {
+	jobs := make(map[string]interface{})
+	jobs["Test"] = test
+	return jobs
 }
