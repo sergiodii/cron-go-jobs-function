@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/json"
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -17,6 +18,10 @@ func main() {
 // ========================================================
 // WRITE THE FUNCTIONS BELOW
 // ========================================================
+
+func HealthCheck() {
+	fmt.Println("Cron Repo is OK")
+}
 
 func UpdateReditArtificialHot() {
 	responseString := HttpGet("https://api.reddit.com/r/artificial/hot")
@@ -37,7 +42,7 @@ func UpdateReditArtificialHot() {
 		dataToSend.Title = item.Data.Title
 		dataToSend.Ups = item.Data.Ups
 		dataToSend.NumComments = item.Data.NumComments
-		dataToSend.CreationData = item.Data.Created.integer
+		dataToSend.CreationDate = item.Data.Created.integer
 		HttpPost("http://localhost:8080/posts", dataToSend)
 	}
 }
@@ -78,7 +83,7 @@ type SubreditArtificialHotDataToSend struct {
 	Title        string `json:"title"`
 	Ups          int64  `json:"ups"`
 	NumComments  int64  `json:"num_comments"`
-	CreationData int64  `json:"created_data"`
+	CreationDate int64  `json:"creation_date"`
 }
 
 func (sd *SubreditArtificialHotDataToSend) FromJson(dataJson string) *SubreditArtificialHotDataToSend {
