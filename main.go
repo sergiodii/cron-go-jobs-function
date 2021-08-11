@@ -43,7 +43,7 @@ func UpdateReditArtificialHot(serverUrl string) {
 		dataToSend.Ups = item.Data.Ups
 		dataToSend.NumComments = item.Data.NumComments
 		dataToSend.CreationDate = item.Data.Created.integer
-		HttpPost(serverUrl, dataToSend)
+		HttpPost(serverUrl+"/posts", dataToSend)
 	}
 }
 
