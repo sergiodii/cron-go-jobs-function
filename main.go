@@ -23,7 +23,7 @@ func HealthCheck() {
 	fmt.Println("Cron Repo is OK")
 }
 
-func UpdateReditArtificialHot() {
+func UpdateReditArtificialHot(serverUrl string) {
 	responseString := HttpGet("https://api.reddit.com/r/artificial/hot")
 
 	if len(responseString) <= 0 {
@@ -43,7 +43,7 @@ func UpdateReditArtificialHot() {
 		dataToSend.Ups = item.Data.Ups
 		dataToSend.NumComments = item.Data.NumComments
 		dataToSend.CreationDate = item.Data.Created.integer
-		HttpPost("http://localhost:8080/posts", dataToSend)
+		HttpPost(serverUrl, dataToSend)
 	}
 }
 
